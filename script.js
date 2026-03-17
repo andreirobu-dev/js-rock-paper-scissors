@@ -3,7 +3,21 @@
     // Get player choice
     // Pick a winner
 
-function getComputerChoice () {
+function playRound(playerChoice, computerChoice) {
+    console.log(`Player picked.. ${playerChoice}`);
+    console.log(`Computer picked.. ${computerChoice}`);
+    if (playerChoice === computerChoice) {
+        console.log("Tie!");
+    } else if ((playerChoice === "rock" && computerChoice === "scissors")
+        || (playerChoice === "paper" && computerChoice === "rock")
+        || (playerChoice === "scissors" && computerChoice === "paper")){
+        console.log("Player Wins!");
+    } else {
+        console.log("Computer Wins!");
+    }
+}
+
+function getComputerChoice() {
     let computerChoice = "";
     randomNumber = Math.random();
     if (randomNumber <= 0.33) {
@@ -25,4 +39,4 @@ function getPlayerChoice() {
     }
 }
 
-console.log(getPlayerChoice());
+playRound(getPlayerChoice(), getComputerChoice());
