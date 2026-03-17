@@ -31,19 +31,12 @@ function playRound(playerChoice, computerChoice) {
 
 // Get a random choice from the computer
 function getComputerChoice() {
-    let computerChoice = "";
-    randomNumber = Math.random();
+    let choices = ["rock", "paper", "scissors"];
 
-    // Divide number 1 in three equal parts to assign the result to "rock", "paper" or "scissors"
-    if (randomNumber <= 0.33) {
-        computerChoice = "rock";
-    } else if (randomNumber <= 0.66) {
-        computerChoice = "paper";
-    } else {
-        computerChoice = "scissors";
-    }
+    // Get a random index
+    let randomIndex = Math.floor(Math.random() * choices.length);
     
-    return computerChoice;
+    return choices[randomIndex];
 }
 
 // Get a choice from the player
