@@ -1,1 +1,2 @@
 # js-rock-paper-scissors
+This is a simple rock-paper-scissors game, where the player types "rock", "paper" or "scissors", and that input is compared with a random choice from the computer. The winner is selected based on the rock-paper-scissors game rules(eg. rock beats scissors, paper beats rock, and so on).
