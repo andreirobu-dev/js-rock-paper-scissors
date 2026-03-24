@@ -1,5 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
+let gameOver = false;
 
 const choiceButtons = document.querySelectorAll(".choice");
 const result = document.createElement("div");
@@ -8,6 +9,7 @@ const playerPick = document.createElement("div");
 const computerPick = document.createElement("div");
 const output = document.createElement("div");
 const score = document.createElement("div");
+const gameWin = document.createElement("div");
 
 choiceButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -17,6 +19,13 @@ choiceButtons.forEach((button) => {
 
 // Play a round, check for win conditions
 function playRound(playerChoice, computerChoice) {
+    if (gameOver === true) {
+        playerScore = 0;
+        computerScore = 0;
+        output.removeChild(gameWin);
+        gameOver = false;
+    }
+
     playerPick.textContent = `Player picked.. ${playerChoice}`;
     computerPick.textContent = `Computer picked.. ${computerChoice}`;
 
@@ -26,10 +35,10 @@ function playRound(playerChoice, computerChoice) {
         || (playerChoice === "paper" && computerChoice === "rock")
         || (playerChoice === "scissors" && computerChoice === "paper")) {
         playerScore++;
-        result.textContent = "Player wins!";
+        result.textContent = "Player wins the round!";
     } else {
         computerScore++;
-        result.textContent = "Computer wins!";
+        result.textContent = "Computer wins the round!";
     }
 
     score.textContent = `Score: Player ${playerScore} - Computer ${computerScore}`;
@@ -37,6 +46,17 @@ function playRound(playerChoice, computerChoice) {
     output.appendChild(computerPick);
     output.appendChild(result);
     output.appendChild(score);
+
+    if (playerScore === 5) {
+        gameWin.textContent = "Player wins the game!";
+        output.appendChild(gameWin);
+        gameOver = true;
+    } else if (computerScore === 5) {
+        gameWin.textContent = "Computer wins the game!";
+        output.appendChild(gameWin);
+        gameOver = true;
+    }
+
     body.appendChild(output);
 }
 
