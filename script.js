@@ -1,12 +1,13 @@
 let playerScore = 0;
 let computerScore = 0;
 
-function playGame() {
-    let rounds = 5;
-    for (let round = 0; round < rounds; round++) {
-        playRound(getPlayerChoice(), getComputerChoice());
-    }
-}
+const choiceButtons = document.querySelectorAll(".choice");
+
+choiceButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.textContent.toLowerCase(), getComputerChoice());
+    });
+})
 
 // Play a round, check for win conditions
 function playRound(playerChoice, computerChoice) {
@@ -38,16 +39,3 @@ function getComputerChoice() {
     
     return choices[randomIndex];
 }
-
-// Get a choice from the player
-function getPlayerChoice() {
-    while (true) {
-        let playerChoice = prompt("Your Choice(rock, paper or scissors): ").toLowerCase();
-        // Validate the result
-        if (playerChoice === "rock" || playerChoice === "paper" || playerChoice == "scissors") {
-            return playerChoice;
-        }
-    }
-}
-
-playGame();
